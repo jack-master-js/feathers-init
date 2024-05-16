@@ -1,0 +1,2 @@
+# feathers-init
+feathers init
