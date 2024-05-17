@@ -1,4 +1,4 @@
-# feathers-init
+# feathers-app
 
 > feathers init
 

@@ -11,10 +11,12 @@ import express, {
 } from '@feathersjs/express'
 import configuration from '@feathersjs/configuration'
 import socketio from '@feathersjs/socketio'
-
+import { configurationValidator } from './configuration.js'
 import { logger } from './logger.js'
 import { logError } from './hooks/log-error.js'
 import { mysql } from './mysql.js'
+
+import { authentication } from './authentication.js'
 
 import { services } from './services/index.js'
 import { channels } from './channels.js'
@@ -22,7 +24,7 @@ import { channels } from './channels.js'
 const app = express(feathers())
 
 // Load app configuration
-app.configure(configuration())
+app.configure(configuration(configurationValidator))
 app.use(cors())
 app.use(json())
 app.use(urlencoded({ extended: true }))
@@ -39,6 +41,8 @@ app.configure(
   })
 )
 app.configure(mysql)
+
+app.configure(authentication)
 
 app.configure(services)
 app.configure(channels)

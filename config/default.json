@@ -10,7 +10,28 @@
     "max": 50
   },
   "mysql": {
-    "client": "mysql",
-    "connection": "mysql://root:@localhost:3306/feathers-app"
+    "client": "mysql2",
+    "connection": "mysql://root:123456@localhost:3306/feathers"
+  },
+  "authentication": {
+    "entity": "user",
+    "service": "users",
+    "secret": "nn8L6pKr4a+tHxlS9cAKeOnb4GLTa/A6",
+    "authStrategies": [
+      "jwt",
+      "local"
+    ],
+    "jwtOptions": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "usernameField": "email",
+      "passwordField": "password"
+    }
   }
 }
